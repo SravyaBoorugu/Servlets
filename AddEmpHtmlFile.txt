@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+      <form action = "AddEmp" type = "get">
+      Enter employee code <input type="text" name="empno"><br>
+      Enter name <input type="text" name="ename"><br>
+      Job <input type="radio" name="job" value="clerk"> Clerk
+          <input type="radio" name="job" value="salesman"> Salesman
+          <input type="radio" name="job" value="manager"> Manager
+          <input type="radio" name="job" value="analyst"> Analyst
+          <input type="radio" name="job" value="president"> President<br>
+      Manager ID <input type="text" name="mgr"><br>
+      Hiredate <input type="date" name="hiredate"><br>
+      Salary <input type="text" name="salary"><br>
+      Commission <input type="text" name="comm"><br>
+      Department number <input type="text" name="dept"><br>
+      <input type="submit">            
+      </form>
+</body>
+</html>

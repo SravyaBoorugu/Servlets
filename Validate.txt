@@ -1,0 +1,57 @@
+package formValidation;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/Validate")
+public class Validate extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   PrintWriter out = response.getWriter();
+	   String user = request.getParameter("user");
+	   String pass = request.getParameter("pass");
+	   RequestDispatcher rd = null;
+	   if(user.equals("admin") && pass.equals("admin")){
+		   HttpSession session = request.getSession();
+		   session.setAttribute("admin", user);
+		   //session.setAttribute(pass, pass);
+		   out.println("Session created");
+		   rd = request.getRequestDispatcher("Admin");
+		   //response.sendRedirect("Admin");
+		   rd.include(request, response);
+		   out.println("success");
+		   
+	       }
+	   else if (user.isEmpty() || pass.isEmpty()){
+		   out.println("<font color = red>All fields required</font>");
+	       rd = request.getRequestDispatcher("Form.html");
+	       rd.include(request, response);
+	       }
+	   else if(user.equals("admin") &&  !pass.equals("admin")){
+		   out.println("<font color = red>Enter right password</font>");
+	       rd = request.getRequestDispatcher("Form.html");
+	       rd.include(request, response);
+	   }
+	   else {
+		   rd = request.getRequestDispatcher("User");
+		   rd.include(request, response);
+		   out.println("success");}
+	      
+	   //rd.forward(request, response);
+	   /* if (rd != null){
+	   rd.include(request, response);
+	   out.println("success");}
+	   if (rd == null){out.println("Fields Required");}*/
+	}
+
+	}
+
